@@ -19,6 +19,8 @@
 9. Запустил и добавил в автозапуск службы Zabbix Server, Zabbix Agent и Apache.
 10. Открыл веб-интерфейс и выполнил вход в административную панель.
 
+![Скриншот Zabbix Dashboard](img/zabbix-dashboard.png)
+
 ### Использованные команды
 
 ```bash
@@ -47,4 +49,3 @@ sudo nano /etc/apache2/envvars
 
 sudo systemctl restart zabbix-server zabbix-agent apache2
 sudo systemctl enable zabbix-server zabbix-agent apache2
-![Скриншот Zabbix Dashboard](img/zabbix-dashboard.png)
