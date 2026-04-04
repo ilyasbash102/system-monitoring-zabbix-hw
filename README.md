@@ -47,3 +47,4 @@ sudo nano /etc/apache2/envvars
 
 sudo systemctl restart zabbix-server zabbix-agent apache2
 sudo systemctl enable zabbix-server zabbix-agent apache2
+![Скриншот Zabbix Dashboard](img/zabbix-dashboard.png)
