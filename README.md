@@ -71,6 +71,10 @@ sudo systemctl enable zabbix-server zabbix-agent apache2
 6. Хост `yc-agent` был добавлен в веб-интерфейсе Zabbix с шаблоном `Linux by Zabbix agent`.
 7. После настройки сетевого доступа и проверки соединения данные от второго хоста начали отображаться в Zabbix.
 
+![Скриншот Zabbix Dashboard](img/2.png)
+![Скриншот Zabbix Dashboard](img/3.png)
+![Скриншот Zabbix Dashboard](img/4.png)
+
 ### Использованные команды
 
 ```bash
