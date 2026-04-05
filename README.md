@@ -49,3 +49,43 @@ sudo nano /etc/apache2/envvars
 
 sudo systemctl restart zabbix-server zabbix-agent apache2
 sudo systemctl enable zabbix-server zabbix-agent apache2
+
+
+
+## Задание 2
+
+Установлен Zabbix Agent на два хоста:
+- `Zabbix server` — сервер Zabbix на локальной Ubuntu VM
+- `yc-agent` — Debian 11 VM в Yandex Cloud
+
+Оба хоста были добавлены в Zabbix Server в раздел `Data collection -> Hosts`.  
+После настройки агентов и добавления хостов данные начали поступать в раздел `Monitoring -> Latest data`.
+
+### Этапы выполнения
+
+1. На локальном сервере был проверен установленный и работающий `zabbix-agent`.
+2. В Yandex Cloud была создана отдельная VM с Debian 11.
+3. На второй VM был установлен `zabbix-agent`.
+4. В конфигурационном файле `/etc/zabbix/zabbix_agentd.conf` были указаны разрешённый сервер и имя хоста.
+5. Агент был запущен и добавлен в автозагрузку.
+6. Хост `yc-agent` был добавлен в веб-интерфейсе Zabbix с шаблоном `Linux by Zabbix agent`.
+7. После настройки сетевого доступа и проверки соединения данные от второго хоста начали отображаться в Zabbix.
+
+### Использованные команды
+
+```bash
+sudo apt update
+sudo apt install -y ca-certificates wget gnupg lsb-release
+
+wget https://repo.zabbix.com/zabbix/7.4/release/debian/pool/main/z/zabbix-release/zabbix-release_latest_7.4+debian11_all.deb
+sudo dpkg -i zabbix-release_latest_7.4+debian11_all.deb
+sudo apt update
+sudo apt install -y zabbix-agent
+
+sudo nano /etc/zabbix/zabbix_agentd.conf
+sudo systemctl restart zabbix-agent
+sudo systemctl enable zabbix-agent
+systemctl status zabbix-agent --no-pager
+
+sudo ss -ltnp | grep 10050
+sudo tail -n 30 /var/log/zabbix/zabbix_agentd.log
